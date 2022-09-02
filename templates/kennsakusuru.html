@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>世界には様々な年金制度が存在します。様々なサイトから調べてみましょう。</p>
+<p>ボタンを押すとランダムでリンクを表示します！（別サイトに行くので要注意！）</p>
+<form method="post" action="{% url 'w:kennsaku_botanns' %}">
+    {% csrf_token %}
+    <input type="submit" value="検索する">
+</form>
+
+<h2>
+    {% if x == 1 %}
+    <a href="https://www.nenkin.go.jp/service/shaho-kyotei/kunibetsu/20131220-01.html">日本年金機構</a>
+    {% elif x == 2 %}
+    <a href="https://find.4chan.org/?q=pension%20re&o=0">4chan</a>
+    {% elif x == 3 %}
+    <a href="https://www.youtube.com/results?search_query=%E4%B8%96%E7%95%8C%E3%80%80%E5%B9%B4%E9%87%91">youtube</a>
+    {% elif x == 4 %}
+    <a href="https://duckduckgo.com/?q=%E4%B8%96%E7%95%8C%E3%81%AE%E5%B9%B4%E9%87%91&t=h_&ia=web">duckduckgo</a>
+    {% elif x == 5 %}
+    <a href="https://ja.wikipedia.org/wiki/%E5%B9%B4%E9%87%91">Wikipedia</a>
+    {% endif %}
+</h2>
+
+
+<!--
+{% if x %}
+{{ x }}
+{% endif %}
+テスト用-->
+
+
+
+
+{% endblock content%}

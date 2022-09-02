@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}カート{% endblock %}
+
+{% block content %}
+  <ul>
+    {% for product in products %}
+      <li>
+        <a href="{% url 'product_details' product.id %}">{{product.title}}</a>: {{ product.kinngaku }}円
+
+        <form method="post" action="{% url 'cart_deletes' product.id %}">
+            {% csrf_token %}
+            <input type="submit" value="削除">
+
+          </form>
+
+      </li>
+    {% endfor %}
+  </ul>
+
+  合計金額: 年額{{ total_price }}円
+  <p>月額{{total_getugaku}}円</p>
+  <p><a href="{% url 'pension_lists' %}">年金一覧へ</a></p>
+{% endblock %}
