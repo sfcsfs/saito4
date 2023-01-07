@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q)r9r*eu81l0!-zi1*_!$lt(^5*q6u#g9zc4a+1kso*n2m1ax!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nennsaito.pythonanywhere.com']
 
 
 # Application definition
@@ -59,7 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR,"templates")],  #相対パスだと本番時エラーがおこりやすいらしい
-        
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

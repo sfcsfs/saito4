@@ -9,6 +9,12 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 import math
 
+"""
+class C1: #グローバルな変数を用意するためだけの存在
+    kazu = {"c2":0}
+
+c = C1() #初カート追加かの判定
+"""
 
 def nennkin_list(request):    #一覧画面    ページ操作つき
     products = add_pension.objects.order_by('kinngaku')
@@ -19,8 +25,11 @@ def nennkin_list(request):    #一覧画面    ページ操作つき
         products = paginator.page(page)
     except (EmptyPage, PageNotAnInteger):
         products = paginator.page(1)
+
+
     return TemplateResponse(request, 'home.html',
                             {'products': products})
+
 
 
 def product_detail(request, product_id):    #詳細画面
@@ -28,24 +37,33 @@ def product_detail(request, product_id):    #詳細画面
         product = add_pension.objects.get(id=product_id)
     except add_pension.DoesNotExist:
         raise Http404
-    
+    #cart = request.session.get('cart')
+    """
     cart = request.session.get('cart')
-    
-    if product_id == 5 or product_id == 6 or product_id == 8: #３子以降の加給年金のID。この場合は何度でも追加できるようにする。
+    if c.kazu["c2"] == 0: #12行目の変数 初呼び出しなら老齢基礎年金と老齢厚生年金足す
+        cart.append(1)
+        cart.append(2)
+        request.session['cart'] = cart
+
+    c.kazu["c2"] += 1 #関数を呼び出した回数増やす
+    """
+    if product_id == 5 or product_id == 6 or product_id == 8 or product_id == 10: #３子以降の加給年金のID。この場合は何度でも追加できるようにする。
         a = []
         a.append("n")
 
-    elif product_id in cart:
-        a = []#すでにカートに追加されてればなにもいれない
-        
+
+
+    #elif product_id in cart: #一回目のrequest.session.getはバグる気がするので上のc==0をいれる
+        #a = []#すでにカートに追加されてればなにもいれない
+
     else:
         a = []
-        a.append("n")#まだカートに追加されていなければnにして同じ年金はカートに一回しか追加できないようにする。
+        a.append("n")#まだカートに追加されていなければnにして同じ年金はカートに一回しか追加できないようにする。(現在は何回でも追加できるように)
 
 
 
 
-    if product_id == 6 or product_id == 8: #6は障害年金のこと。8は遺族年金のこと。カートに追加する必要がないIDはこちらにまとめておく。
+    if product_id == 6 or product_id == 8 or product_id == 10: #6は障害年金のこと。8は遺族年金のこと。#10は付加年金。カートに追加する必要がないIDはこちらにまとめておく。
         b = []
         b.append("n")
     else:
