@@ -3,19 +3,19 @@
 {% block title %}年金詳細{% endblock %}
 
 {% block content %}
-  <h3>{{ product.title }}</h3>
-  <h3>{{ product.text }}</h3>
-  加算金額：{{ product.kinngaku }}円
-   <form method="post" action="{% url 'cart_adds' product.id %}">
-    {% csrf_token %}
-    {% if b %}
-    <p>他の最善の選択肢があるため選択する必要なし</p>
-    {% elif a  %}
-    <input type="submit" value="この年金を受給する">
-    {% else %}
-    <p>この年金を受給する（基本的には同じ年金は１回しか追加できません)</p>
-    {% endif %}
+<h3>{{ product.title }}</h3>
+<h3>{{ product.text }}</h3>
+加算金額：{{ product.kinngaku }}円
+<form method="post" action="{% url 'cart_adds' product.id %}">
+  {% csrf_token %}
+  {% if b %}
+  <p>他の最善の選択肢があるため選択する必要なし</p>
+  {% elif a %}
+  <input type="submit" value="この年金を受給する">
+  {% else %}
+  <p>この年金を受給する（基本的には同じ年金は１回しか追加できません)</p>
+  {% endif %}
 
-  </form>
-  <a href="{% url 'pension_lists' %}">年金一覧へ</a>
+</form>
+<a href="{% url 'pension_lists' %}">年金一覧へ</a>
 {% endblock %}
