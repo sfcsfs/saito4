@@ -5,7 +5,7 @@
 ## URL:  https://nennsaito.pythonanywhere.com/home/
 
 ## 使用技術
-・
-・
-・
-・
+・Python 3.8.10
+・Django 4.1.3
+・SQLite
+・PythonAnywhere
