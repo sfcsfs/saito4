@@ -21,5 +21,5 @@ sekai/views.py = 用意されている中からランダムにURLをページに
 
 templates/home.html = ホーム画面　各種年金を確認できるページもここ。  
 templates/cart.html = カート画面。受給金額の合計等を表示。  
-templates/kennsakusuru.html = 上記sekai/views.pyのURLが表示されるページ  
+templates/kennsakusuru.html = 上記sekai/views.pyのURLが表示されるページ。  
 templates/product_detail.html = 各種年金の説明と追加が可能なページ。ただし趣旨に合わないため説明のみで追加できない年金あり。  
